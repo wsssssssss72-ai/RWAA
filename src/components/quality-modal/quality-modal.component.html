@@ -1,0 +1,23 @@
+
+@if (qualityModal().open) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" (click)="close()">
+    <div class="bg-gray-900/70 backdrop-blur-2xl border border-white/10 rounded-2xl max-w-md w-full p-8 shadow-2xl" (click)="$event.stopPropagation()">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-xl font-bold">Select Quality</h3>
+        <button (click)="close()" class="text-gray-500 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-6">
+        <button (click)="playVideo('720p')" class="quality-btn">720p HD</button>
+        <button (click)="playVideo('480p')" class="quality-btn">480p SD</button>
+        <button (click)="playVideo('360p')" class="quality-btn">360p Eco</button>
+        <button (click)="playVideo('240p')" class="quality-btn">240p Low</button>
+      </div>
+      <button (click)="playVideo('0')" class="w-full py-3 bg-gradient-to-r from-[#a855f7] to-[#6366f1] text-white font-bold rounded-xl transition-transform duration-300 hover:scale-105">
+        Auto (Recommended)
+      </button>
+    </div>
+  </div>
+}
+<style>
+.quality-btn { @apply py-4 bg-white/5 hover:bg-white/10 rounded-lg font-medium transition; }
+</style>

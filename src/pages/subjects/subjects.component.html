@@ -1,0 +1,65 @@
+
+<div class="animate-fade-in">
+  <app-page-header
+    [title]="batchName()"
+    subtitle="Explore all subjects in this batch"
+    backLink="/batches"
+    backText="Back to Dashboard">
+  </app-page-header>
+  
+  @if (isLoading()) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (item of [1,2,3,4,5,6]; track item) {
+        <div class="h-24 bg-white/5 rounded-2xl relative overflow-hidden skeleton-shimmer"></div>
+      }
+    </div>
+  } @else {
+    @if (subjects().length > 0) {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (subject of subjects(); track subject.subjectid) {
+          <a [routerLink]="['/batch', batchId(), 'subject', subject.subjectid]"
+             class="group bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex items-center space-x-4 hover:border-blue-500 hover:-translate-y-1 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-transparent flex items-center justify-center text-2xl text-blue-300">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-white">{{ subject.subject_name || 'Unnamed Subject' }}</h4>
+              <p class="text-sm text-gray-500 mt-1">Click to view topics</p>
+            </div>
+            <i class="fas fa-chevron-right text-gray-600 group-hover:text-white transition-colors"></i>
+          </a>
+        }
+      </div>
+    } @else {
+      <div class="text-center py-16 text-gray-500">
+        <i class="fas fa-folder-open text-5xl mb-4"></i>
+        <h4 class="text-lg font-medium">No subjects found in this batch</h4>
+      </div>
+    }
+  }
+</div>
+<style>
+@keyframes fade-in { 
+  from { opacity: 0; transform: translateY(20px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+.animate-fade-in { 
+  animation: fade-in 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+}
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+</style>

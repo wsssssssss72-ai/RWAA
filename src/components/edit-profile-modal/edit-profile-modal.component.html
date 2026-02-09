@@ -1,0 +1,25 @@
+
+@if (isOpen()) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" (click)="close()">
+    <div class="bg-gray-900/70 backdrop-blur-2xl border border-white/10 rounded-2xl max-w-md w-full p-8 shadow-2xl" (click)="$event.stopPropagation()">
+      <h3 class="text-2xl font-bold mb-6">Edit Profile</h3>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-2 text-gray-400">Name</label>
+          <input type="text" [value]="name()" (input)="name.set($event.target.value)" class="modern-input" placeholder="Enter your name">
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-2 text-gray-400">Bio</label>
+          <input type="text" [value]="bio()" (input)="bio.set($event.target.value)" class="modern-input" placeholder="Enter your bio">
+        </div>
+      </div>
+      <div class="flex space-x-3 mt-8">
+        <button (click)="saveProfile()" class="flex-1 py-3 bg-gradient-to-r from-[#a855f7] to-[#6366f1] text-white font-bold rounded-xl transition-transform duration-300 hover:scale-105">Save Changes</button>
+        <button (click)="close()" class="flex-1 py-3 bg-white/10 border border-white/20 rounded-xl font-semibold hover:bg-white/20 transition-colors">Cancel</button>
+      </div>
+    </div>
+  </div>
+}
+<style>
+.modern-input { @apply bg-white/5 border-2 border-white/10 rounded-xl px-5 py-3 text-white w-full focus:outline-none focus:border-[#a855f7] focus:bg-white/10 transition-all duration-300; }
+</style>

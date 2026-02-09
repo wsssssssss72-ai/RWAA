@@ -1,0 +1,76 @@
+
+<div class="animate-fade-in">
+  <app-page-header
+    title="Your Saved Content"
+    subtitle="Access your favorite learning materials">
+  </app-page-header>
+  
+  @if (isLoading()) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      @for (item of [1,2,3,4]; track item) {
+        <div class="aspect-[16/10] bg-white/5 rounded-2xl relative overflow-hidden skeleton-shimmer"></div>
+      }
+    </div>
+  } @else {
+    @if (favoriteBatches().length > 0) {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        @for (batch of favoriteBatches(); track batch.id) {
+          <div 
+            (click)="onBatchClick(batch)"
+            class="group relative overflow-hidden rounded-2xl cursor-pointer bg-gray-900 border border-white/10 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl hover:shadow-purple-500/10">
+            
+            <img [src]="batch.course_thumbnail" 
+                 [alt]="batch.course_name"
+                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                 (error)="handleImageError($event, batch.id)">
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+            
+            <div class="relative flex flex-col justify-end w-full h-full p-4 aspect-[16/10]">
+              <button 
+                (click)="toggleFavorite($event, batch.id)"
+                class="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/50 backdrop-blur-lg flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10">
+                <i [class]="isFavorite(batch.id) ? 'fas fa-star text-yellow-400' : 'far fa-star text-white'"></i>
+              </button>
+
+              <h4 class="font-bold text-white truncate text-lg">{{ batch.course_name }}</h4>
+            </div>
+
+            <div class="absolute inset-0 border-2 border-transparent group-hover:border-purple-500 rounded-2xl transition-all duration-300 pointer-events-none"></div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="text-center py-16 text-gray-500">
+        <i class="fas fa-star text-5xl mb-4"></i>
+        <h4 class="text-lg font-medium">No saved content yet</h4>
+        <p>Click the star icon on a batch to save it here.</p>
+      </div>
+    }
+  }
+</div>
+<style>
+@keyframes fade-in { 
+  from { opacity: 0; transform: translateY(20px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+.animate-fade-in { 
+  animation: fade-in 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+}
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+</style>

@@ -1,0 +1,8 @@
+
+.nav-item {
+  @apply flex flex-col items-center transition-all duration-300 text-gray-500 py-2 w-full;
+}
+.nav-item.active {
+  color: #c084fc; /* light purple */
+  text-shadow: 0 0 15px #a855f7;
+}

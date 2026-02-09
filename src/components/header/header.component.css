@@ -1,0 +1,23 @@
+
+.tab-item {
+  @apply rounded-full transition-colors duration-300 text-gray-400 hover:text-white flex items-center;
+  position: relative;
+}
+.tab-item.active {
+  @apply text-white;
+}
+
+/* This is a bit of a trick. We use JS to find the active tab and move the indicator */
+/* For a pure CSS approach, we can do this: */
+nav:has(a:nth-child(1).active) .active-indicator {
+  width: 132px;
+  transform: translateX(0);
+}
+nav:has(a:nth-child(2).active) .active-indicator {
+  width: 104px;
+  transform: translateX(132px);
+}
+nav:has(a:nth-child(3).active) .active-indicator {
+  width: 102px;
+  transform: translateX(236px);
+}

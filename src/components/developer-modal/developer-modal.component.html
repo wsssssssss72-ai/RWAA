@@ -1,0 +1,19 @@
+
+@if (isOpen()) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" (click)="close()">
+    <div class="bg-gray-900/70 backdrop-blur-2xl border border-white/10 rounded-2xl max-w-md w-full p-8 shadow-2xl" (click)="$event.stopPropagation()">
+      <div class="text-center mb-6">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#a855f7] to-[#6366f1] p-1 shadow-lg">
+          <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=VIPSTUDY" class="w-full h-full rounded-full object-cover">
+        </div>
+        <h3 class="text-2xl font-bold mb-2">VIPSTUDY</h3>
+        <p class="text-gray-400">Quantum System Architect</p>
+      </div>
+      <div class="space-y-4">
+        <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg"><span class="text-gray-400">Version</span><span class="font-medium">v23.0 Pro</span></div>
+        <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg"><span class="text-gray-400">Status</span><span class="text-green-300 font-medium">Active</span></div>
+      </div>
+      <button (click)="close()" class="w-full mt-6 py-2.5 bg-white/10 border border-white/20 rounded-lg font-semibold hover:bg-white/20 transition-colors">Close</button>
+    </div>
+  </div>
+}

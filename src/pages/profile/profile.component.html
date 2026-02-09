@@ -1,0 +1,66 @@
+
+<div class="max-w-4xl mx-auto animate-fade-in">
+  @if (profile(); as user) {
+    <!-- Profile Header -->
+    <div class="bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 mb-8">
+      <div class="flex flex-col items-center md:flex-row md:items-center md:justify-between text-center md:text-left">
+        <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+          <div class="p-1 rounded-full bg-gradient-to-r from-[#a855f7] to-[#6366f1] shadow-lg">
+            <img [src]="avatarUrl()" alt="User Avatar" class="w-24 h-24 rounded-full border-4 border-[#0a0a0f]">
+          </div>
+          <div>
+            <h2 class="text-3xl font-extrabold tracking-tight">{{ user.name }}</h2>
+            <p class="text-gray-400 mt-2">{{ user.bio }}</p>
+          </div>
+        </div>
+        <button (click)="editProfile()" class="mt-6 md:mt-0 px-5 py-2.5 bg-white/10 border border-white/20 rounded-lg font-semibold hover:bg-white/20 transition-colors">
+          <i class="fas fa-edit mr-2"></i> Edit Profile
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- Stats -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="stat-card">
+      <div class="stat-icon from-purple-500/20 text-purple-300"><i class="fas fa-chart-line"></i></div>
+      <span class="text-2xl font-bold">30%</span><span class="text-gray-400">Completion</span>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon from-blue-500/20 text-blue-300"><i class="fas fa-clock"></i></div>
+      <span class="text-2xl font-bold">15h</span><span class="text-gray-400">Time Spent</span>
+    </div>
+     <div class="stat-card">
+      <div class="stat-icon from-green-500/20 text-green-300"><i class="fas fa-shield-alt"></i></div>
+      <span class="text-2xl font-bold text-green-300">Online</span><span class="text-gray-400">Status</span>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+    <h3 class="text-lg font-bold mb-4">System Actions</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <button (click)="showDeveloperInfo()" class="action-button">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500/20 text-indigo-300 icon-wrapper"><i class="fas fa-code"></i></div>
+        <div class="text-left"><div class="font-medium">Developer Info</div><div class="text-sm text-gray-500">System architect details</div></div>
+      </button>
+      <button (click)="clearData()" class="action-button">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-500/20 text-rose-300 icon-wrapper"><i class="fas fa-power-off"></i></div>
+        <div class="text-left"><div class="font-medium text-rose-300">Reset System</div><div class="text-sm text-gray-500">Clear all local data</div></div>
+      </button>
+    </div>
+  </div>
+</div>
+<style>
+@keyframes fade-in { 
+  from { opacity: 0; transform: translateY(20px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+.animate-fade-in { 
+  animation: fade-in 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+}
+.action-button { @apply flex items-center space-x-4 p-4 hover:bg-white/5 rounded-lg transition-colors w-full; }
+.stat-card { @apply bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex items-center space-x-4 transition-colors hover:bg-white/5; }
+.stat-icon { @apply w-12 h-12 rounded-lg bg-gradient-to-br flex items-center justify-center text-xl; }
+.icon-wrapper { @apply flex items-center justify-center; }
+</style>

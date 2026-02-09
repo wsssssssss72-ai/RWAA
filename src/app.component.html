@@ -1,0 +1,51 @@
+
+@if (isShowingSplash()) {
+  <app-loading-screen></app-loading-screen>
+} @else {
+  @if (needsSetup()) {
+    <app-setup-screen (setupCompleted)="finishSetup($event)"></app-setup-screen>
+  } @else if (isAppReady()) {
+    <div class="min-h-screen bg-[#0a0a0f] text-white selection:bg-[#a855f7] selection:text-white">
+      <!-- Refined Animated Background -->
+      <div class="fixed inset-0 z-[-1] overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,#a855f710_0%,transparent_50%),radial-gradient(circle_at_10%_80%,#6366f110_0%,transparent_50%)]"></div>
+        <div class="absolute w-[50vw] h-[70vh] -top-1/4 -right-1/4 bg-[#6366f1] rounded-full opacity-5 blur-[200px] animate-aurora-1"></div>
+        <div class="absolute w-[40vw] h-[60vh] -bottom-1/4 -left-1/4 bg-[#a855f7] rounded-full opacity-5 blur-[200px] animate-aurora-2"></div>
+      </div>
+
+      <app-header [clock]="clock()"></app-header>
+      
+      <main class="container mx-auto px-4 py-8 pb-24 md:pb-8">
+        <router-outlet></router-outlet>
+      </main>
+
+      <app-mobile-nav></app-mobile-nav>
+
+      <!-- Modals -->
+      <app-toast></app-toast>
+      <app-developer-modal></app-developer-modal>
+      <app-edit-profile-modal></app-edit-profile-modal>
+      <app-wa-modal></app-wa-modal>
+      <app-quality-modal></app-quality-modal>
+      <app-video-player></app-video-player>
+    </div>
+  }
+}
+
+<style>
+  @keyframes aurora-1 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(40px, 80px) rotate(20deg); }
+  }
+  @keyframes aurora-2 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-40px, -60px) rotate(-20deg); }
+  }
+  .animate-aurora-1 {
+    animation: aurora-1 30s infinite ease-in-out;
+  }
+  .animate-aurora-2 {
+    animation: aurora-2 30s infinite ease-in-out;
+    animation-delay: 7s;
+  }
+</style>

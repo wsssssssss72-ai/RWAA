@@ -1,0 +1,67 @@
+
+<div class="fixed inset-0 z-50 overflow-hidden bg-black animate-splash-container-fade-out">
+  <!-- Background Image with Zoom Animation -->
+  <img src="https://cdn.phototourl.com/uploads/2026-02-09-a8ff3eb4-a731-4225-9be6-a13f744daf39.png" 
+       alt="Quantum OS Loading Screen" 
+       class="absolute inset-0 w-full h-full object-cover animate-image-zoom-in">
+  
+  <!-- Dark Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+
+  <!-- Centered Content -->
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-white">
+    <div class="overflow-hidden">
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-widest animate-text-fade-slide-up"
+          style="text-shadow: 0 4px 30px rgba(168, 85, 247, 0.4);">
+        QUANTUM <span class="gradient-text">OS</span>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes image-zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(1.1);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes text-fade-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes splash-container-fade-out {
+    0%, 80% { 
+      opacity: 1; 
+    }
+    100% { 
+      opacity: 0; 
+      visibility: hidden;
+    }
+  }
+
+  .animate-splash-container-fade-out {
+    animation: splash-container-fade-out 3s ease-out forwards;
+  }
+
+  .animate-image-zoom-in {
+    animation: image-zoom-in 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .animate-text-fade-slide-up {
+    animation: text-fade-slide-up 1.5s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards;
+    animation-delay: 0.5s;
+  }
+</style>

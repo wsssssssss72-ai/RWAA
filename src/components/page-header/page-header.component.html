@@ -1,0 +1,16 @@
+
+<div class="mb-8">
+  @if(backLink() && backText()) {
+    <a [routerLink]="backLink()" class="inline-flex items-center px-4 py-2 mb-6 bg-white/5 border border-white/10 rounded-full font-semibold hover:bg-white/10 transition-colors text-sm">
+      <i class="fas fa-arrow-left mr-2"></i>
+      {{ backText() }}
+    </a>
+  }
+  
+  <div class="flex items-center justify-between">
+    <div>
+      <h2 class="text-2xl font-extrabold tracking-tight">{{ title() }}</h2>
+      <p class="text-gray-400">{{ subtitle() }}</p>
+    </div>
+  </div>
+</div>
